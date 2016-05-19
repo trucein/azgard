@@ -1,0 +1,30 @@
+# Ignore Installed Deps
+node_modules/
+bower_components/
+
+# Ignore Test Coverage
+coverage/
+
+# Ignore SASS compile cache
+.sass-cache/
+
+# Ignore editor files
+.idea/
+.tmp/
+.DS_Store
+
+# Ignore Prod Build
+dist/
+/build/
+build/
+dev/
+
+
+# Ignore Swap files and logs
+*~
+*.swp
+npm-debug.log
+.vscode
+*.log
+*.stackdump
+
