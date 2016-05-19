@@ -1,0 +1,22 @@
+{
+  "name": "azgard",
+  "version": "0.0.1",
+  "description": "Authentication Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trucein/azgard.git"
+  },
+  "keywords": [
+    "Auth"
+  ],
+  "author": "Kushal Khandelwal <kushal@truce.in>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trucein/azgard/issues"
+  },
+  "homepage": "https://github.com/trucein/azgard#readme"
+}

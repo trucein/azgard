@@ -1,0 +1,22 @@
+{
+  "name": "azgard",
+  "description": "Authentication Framework",
+  "main": "index.js",
+  "authors": [
+    "Kushal Khandelwal <kushal@truce.in>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Auth"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
