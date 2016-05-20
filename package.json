@@ -14,9 +14,26 @@
     "Auth"
   ],
   "author": "Kushal Khandelwal <kushal@truce.in>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/trucein/azgard/issues"
   },
-  "homepage": "https://github.com/trucein/azgard#readme"
+  "homepage": "https://github.com/trucein/azgard#readme",
+  "devDependencies": {
+    "browser-sync": "^2.12.8",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-header": "^1.8.2",
+    "gulp-inject": "^4.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-uglify": "^1.5.3",
+    "gulp-ngdocs": "^0.2.13",
+    "run-sequence": "^1.2.0",
+
+  }
 }
