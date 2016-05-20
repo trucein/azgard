@@ -121,6 +121,7 @@ gulp.task('dev:cleanfolder', function() {
 gulp.task('build:prod', function() {
 	return gulp.src(appJS)
 	.pipe(concat('azgard.js'))
+	.pipe(gulp.dest('build/'))
 	.pipe(plumber())
 	.pipe(uglify())
 	.pipe(header(banner, { pkg: pkg }))
