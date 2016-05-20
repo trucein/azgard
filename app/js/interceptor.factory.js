@@ -26,13 +26,17 @@
             var token = storage.get(tokenName);
 
             request.headers[config.authHeader] = token;
-
-            return request
+            
           }
+          return request;
 
         },
 
         responseError: function(response) {
+
+          if (response.status == 401 ) {
+            window.location = config.loginPage;
+          }
           return $q.reject(response);
         }
       };

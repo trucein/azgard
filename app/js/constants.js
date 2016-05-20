@@ -22,8 +22,9 @@
 		authHeader:			'X-Auth-Token',
 		authToken: 			'',
 		storageType:  		'localStorage',
-		tokenName: 			'Auth',
-		tokenPrefix: 		'Azgard'
+		tokenName: 			'token',
+		tokenPrefix: 		'azgard',
+		loginPage:  		'/login'
 
 	});
 

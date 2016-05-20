@@ -9,6 +9,6 @@
 	 *
 	 * This Module initializes the AZGARD Angular module.
 	**/
-	Modules.AZGARD = angular.module("azgard", ['ngRoute']);
+	Modules.AZGARD = angular.module("azgard",[]);
 
 }(AZGARD.Modules = AZGARD.Modules || {} ));

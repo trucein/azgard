@@ -19,11 +19,11 @@
             var Shared = {};
             var tokenName = config.tokenPrefix ? [config.tokenPrefix, config.tokenName].join('_') : config.tokenName;
 
-            Shared.getToken = getToken;
-            Shared.getPayload = getPayload;
-            Shared.setToken = setToken;
-            Shared.removeToken = removeToken;
-            Shared.logout = logout;
+            Shared.getToken        = getToken;
+            Shared.getPayload      = getPayload;
+            Shared.setToken        = setToken;
+            Shared.removeToken     = removeToken;
+            Shared.logout          = logout;
             Shared.isAuthenticated = isAuthenticated;
 
             return Shared;
@@ -73,6 +73,7 @@
                 return $q.when();
             };
 
+            // * Code Snippets and Motivation from https://github.com/sahat/satellizer
             function isAuthenticated() {
                 var token = storage.get(tokenName);
                 // A token is present
