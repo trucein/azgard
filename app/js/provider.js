@@ -122,8 +122,8 @@
                     return action.login(data, opts);
                 };
 
-                function register() {
-                    return acton.register();
+                function register(data, opts) {
+                    return acton.register(data, opts);
                 };
 
                 function logout() {
@@ -146,8 +146,8 @@
                     return shared.isAuthenticated();
                 };
 
-                function getOTP() {
-                    return action.getOTP();
+                function getOTP(data, opts) {
+                    return action.getOTP(data, opts);
                 }
 
 

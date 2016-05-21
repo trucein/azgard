@@ -35,6 +35,7 @@
         responseError: function(response) {
 
           if (response.status == 401 ) {
+            shared.logout();
             window.location = config.loginPage;
           }
           return $q.reject(response);

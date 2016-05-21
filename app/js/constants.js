@@ -18,7 +18,7 @@
 		registerUrl:  		'/auth/register',
 		registerAdminUrl: 	'/auth/admin/register',
 		logoutUrl: 			'/auth/logout',
-		otpURL: 			'/auth/get/otp',
+		otpUrl: 			'/auth/get/otp',
 		authHeader:			'X-Auth-Token',
 		authToken: 			'',
 		storageType:  		'localStorage',
