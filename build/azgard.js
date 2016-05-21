@@ -330,6 +330,8 @@
                 $auth.getOTP          = getOTP
                 $auth.loginOTP        = loginOTP;
                 $auth.getProfile      = getProfile;
+                $auth.setProfile      = setProfile;
+                $auth.getProfileData  = getProfileData;
 
                 return $auth;
 
@@ -370,20 +372,17 @@
                 };
 
                 function getProfile(opts) {
-                    if (shared.isAuthenticated()) {
-                        action.getProfile(opts).then(function(data){
-                            shared.profile = data.data.payload;
-                            return data;
-                        })
-                        .catch(function(){
-                            shared.profile = {}
-                        })
-                    } else {
-                        shared.profile = {}
-                        return shared.profile
-                    }
-                    
+                    return action.getProfile(opts) 
                 };
+
+                function setProfile(data) {
+                    shared.profile = data
+                };
+
+                function getProfileData(){
+                    return shared.profile
+                }
+
 
 
             }
