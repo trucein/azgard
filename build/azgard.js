@@ -31,7 +31,7 @@
 	 *
 	 * This Module initializes the AZGARD Angular module.
 	**/
-	Modules.AZGARD = angular.module("azgard", ['ngRoute']);
+	Modules.AZGARD = angular.module("azgard",[]);
 
 }(AZGARD.Modules = AZGARD.Modules || {} ));
 (function (Configs, undefined)
@@ -93,12 +93,22 @@
           });
         };
 
-        function doRegister() {
+        function doRegister(data, opts) {
+          opts = opts || {};
+          opts.url = opts.url ? otps.url : (config.baseUrl + config.registerUrl);
+          opts.data = data || opts.data;
+          opts.method = opts.method || 'POST';
 
+          return $http(opts)
         };
 
-        function getOTP() {
-          
+        function getOTP(data, opts) {
+          opts = opts || {};
+          opts.url = opts.url ? otps.url : (config.baseUrl + config.otpUrl);
+          opts.data = data || opts.data;
+          opts.method = opts.method || 'POST';
+
+          return $http(opts)
         };
 
 
@@ -132,8 +142,9 @@
 		authHeader:			'X-Auth-Token',
 		authToken: 			'',
 		storageType:  		'localStorage',
-		tokenName: 			'Auth',
-		tokenPrefix: 		'Azgard'
+		tokenName: 			'token',
+		tokenPrefix: 		'azgard',
+		loginPage:  		'/login'
 
 	});
 
@@ -168,13 +179,17 @@
             var token = storage.get(tokenName);
 
             request.headers[config.authHeader] = token;
-
-            return request
+            
           }
+          return request;
 
         },
 
         responseError: function(response) {
+
+          if (response.status == 401 ) {
+            window.location = config.loginPage;
+          }
           return $q.reject(response);
         }
       };
@@ -187,156 +202,162 @@
 
 }(window.AZGARD = window.AZGARD || {}));
 (function(AZGARD, undefined) {
-	/**
-	 * @ngdoc function
-	 * @name AZGARD
-	 * @id AZGARD
-	 * @description
-	 *
-	 * Set up for AZGARD Customer Web APP panel constants
-	 * * Code Snippets and Motivation from https://github.com/sahat/satellizer
-	 **/
+    /**
+     * @ngdoc function
+     * @name AZGARD
+     * @id AZGARD
+     * @description
+     *
+     * Set up for AZGARD Customer Web APP panel constants
+     * * Code Snippets and Motivation from https://github.com/sahat/satellizer
+     **/
 
-	AZGARD.Modules.AZGARD.provider('$auth', ['AzgardConfig', function(config) {
-		Object.defineProperties(this, {
-			httpInterceptor: {
-				get: function() {
-					return config.httpInterceptor;
-				},
-				set: function(value) {
-					if (typeof value === 'function') {
-						config.httpInterceptor = value;
-					} else {
-						config.httpInterceptor = function() {
-							return value;
-						};
-					}
-				}
-			},
-			baseUrl: {
-				get: function() {
-					return config.baseUrl;
-				},
-				set: function(value) {
-					config.baseUrl = value;
-				}
-			},
-			loginUrl: {
-				get: function() {
-					return config.loginUrl;
-				},
-				set: function(value) {
-					config.loginUrl = value;
-				}
-			},
-			registerUrl: {
-				get: function() {
-					return config.registerUrl;
-				},
-				set: function(value) {
-					config.registerUrl = value;
-				}
-			},
-			profileUrl: {
-				get: function() {
-					return config.profileUrl;
-				},
-				set: function(value) {
-					config.profileUrl = value;
-				}
-			},
-			loginSMSUrl: {
-				get: function() {
-					return config.loginSMSUrl;
-				},
-				set: function(value) {
-					config.loginSMSUrl = value;
-				}
-			},
-			registerAdminUrl: {
-				get: function() {
-					return config.registerAdminUrl;
-				},
-				set: function(value) {
-					config.registerAdminUrl = value;
-				}
-			},
-			logoutUrl: {
-				get: function() {
-					return config.logoutUrl;
-				},
-				set: function(value) {
-					config.logoutUrl = value;
-				}
-			},
-			authHeader: {
-				get: function() {
-					return config.authHeader;
-				},
-				set: function(value) {
-					config.authHeader = value;
-				}
-			},
-			authToken: {
-				get: function() {
-					return config.authToken;
-				},
-				set: function(value) {
-					config.authToken = value;
-				}
-			}
+    AZGARD.Modules.AZGARD.provider('$auth', ['AzgardConfig', function(config) {
+        Object.defineProperties(this, {
+            httpInterceptor: {
+                get: function() {
+                    return config.httpInterceptor;
+                },
+                set: function(value) {
+                    if (typeof value === 'function') {
+                        config.httpInterceptor = value;
+                    } else {
+                        config.httpInterceptor = function() {
+                            return value;
+                        };
+                    }
+                }
+            },
+            baseUrl: {
+                get: function() {
+                    return config.baseUrl;
+                },
+                set: function(value) {
+                    config.baseUrl = value;
+                }
+            },
+            loginUrl: {
+                get: function() {
+                    return config.loginUrl;
+                },
+                set: function(value) {
+                    config.loginUrl = value;
+                }
+            },
+            registerUrl: {
+                get: function() {
+                    return config.registerUrl;
+                },
+                set: function(value) {
+                    config.registerUrl = value;
+                }
+            },
+            profileUrl: {
+                get: function() {
+                    return config.profileUrl;
+                },
+                set: function(value) {
+                    config.profileUrl = value;
+                }
+            },
+            loginSMSUrl: {
+                get: function() {
+                    return config.loginSMSUrl;
+                },
+                set: function(value) {
+                    config.loginSMSUrl = value;
+                }
+            },
+            registerAdminUrl: {
+                get: function() {
+                    return config.registerAdminUrl;
+                },
+                set: function(value) {
+                    config.registerAdminUrl = value;
+                }
+            },
+            logoutUrl: {
+                get: function() {
+                    return config.logoutUrl;
+                },
+                set: function(value) {
+                    config.logoutUrl = value;
+                }
+            },
+            authHeader: {
+                get: function() {
+                    return config.authHeader;
+                },
+                set: function(value) {
+                    config.authHeader = value;
+                }
+            },
+            authToken: {
+                get: function() {
+                    return config.authToken;
+                },
+                set: function(value) {
+                    config.authToken = value;
+                }
+            }
 
-		});
+        });
 
-		this.$get = [
-		'$q',
-		'AzgardShared',
-		'AzgardAction',
-		function($q, shared, action) {
-			var $auth = {};
+        this.$get = [
+            '$q',
+            'AzgardShared',
+            'AzgardAction',
+            function($q, shared, action) {
+                var $auth = {};
 
-			$auth.login = login;
-			$auth.register = register;
-			$auth.logout	= logout;
-			$auth.getToken = getToken;
-			$auth.removeToken = removeToken;
-			$auth.getPayload = getPayload;
-			$auth.isAuthenticated = isAuthetenticated;
+                $auth.login           = login;
+                $auth.register        = register;
+                $auth.logout          = logout;
+                $auth.getToken        = getToken;
+                $auth.removeToken     = removeToken;
+                $auth.getPayload      = getPayload;
+                $auth.isAuthenticated = isAuthetenticated;
+                $auth.getOTP          = getOTP
 
-			return $auth;
+                return $auth;
 
-			function login(data, opts) {
-				return action.login(data, opts);
-			};
+                function login(data, opts) {
+                    return action.login(data, opts);
+                };
 
-			function register() {
-				
-			};
+                function register() {
+                    return acton.register();
+                };
 
-			function logout() {
-				return action.logout();	
-			};
+                function logout() {
+                    return action.logout();
+                };
 
-			function getToken() {
-				return shared.getToken();
-			};
+                function getToken() {
+                    return shared.getToken();
+                };
 
-			function removeToken() {
-					return shared.removeToken();
-			};
+                function removeToken() {
+                    return shared.removeToken();
+                };
 
-			function getPayload() {
-				return shared.getPayload();
-			};
+                function getPayload() {
+                    return shared.getPayload();
+                };
 
-			function isAuthetenticated() {
-				return shared.isAuthetenticated();	
-			};
+                function isAuthetenticated() {
+                    return shared.isAuthetenticated();
+                };
+
+                function getOTP() {
+                    return action.getOTP();
+                }
 
 
-		}];
+            }
+        ];
 
-	}]);
+    }]);
 
 
 
@@ -362,11 +383,11 @@
             var Shared = {};
             var tokenName = config.tokenPrefix ? [config.tokenPrefix, config.tokenName].join('_') : config.tokenName;
 
-            Shared.getToken = getToken;
-            Shared.getPayload = getPayload;
-            Shared.setToken = setToken;
-            Shared.removeToken = removeToken;
-            Shared.logout = logout;
+            Shared.getToken        = getToken;
+            Shared.getPayload      = getPayload;
+            Shared.setToken        = setToken;
+            Shared.removeToken     = removeToken;
+            Shared.logout          = logout;
             Shared.isAuthenticated = isAuthenticated;
 
             return Shared;
@@ -416,6 +437,7 @@
                 return $q.when();
             };
 
+            // * Code Snippets and Motivation from https://github.com/sahat/satellizer
             function isAuthenticated() {
                 var token = storage.get(tokenName);
                 // A token is present
