@@ -23,6 +23,7 @@
         Action.logout         = doLogout;
         Action.register       = doRegister;
         Action.getOTP         = getOTP;
+        Action.getProfile     = getProfile;
 
         return Action;
 
@@ -63,6 +64,14 @@
           opts.url = opts.url ? otps.url : (config.baseUrl + config.otpUrl);
           opts.data = data || opts.data;
           opts.method = opts.method || 'POST';
+
+          return $http(opts)
+        };
+
+        function getProfile(data, opts) {
+          opts = opts || {};
+          opts.url = opts.url ? otps.url : (config.baseUrl + config.profileUrl);
+          opts.method = opts.method || 'GET';
 
           return $http(opts)
         };
