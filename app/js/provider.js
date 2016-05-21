@@ -142,8 +142,8 @@
                     return shared.getPayload();
                 };
 
-                function isAuthetenticated() {
-                    return shared.isAuthetenticated();
+                function isAuthenticated() {
+                    return shared.isAuthenticated();
                 };
 
                 function getOTP() {
