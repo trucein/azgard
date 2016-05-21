@@ -328,6 +328,7 @@
                 $auth.getPayload      = getPayload;
                 $auth.isAuthenticated = isAuthenticated;
                 $auth.getOTP          = getOTP
+                $auth.loginOTP        = loginOTP;
 
                 return $auth;
 
@@ -361,7 +362,11 @@
 
                 function getOTP(data, opts) {
                     return action.getOTP(data, opts);
-                }
+                };
+
+                function loginOTP(data, opts) {
+                    return action.getOTP(data, opts)
+                };
 
 
             }
