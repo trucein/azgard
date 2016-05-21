@@ -147,7 +147,7 @@
 		registerUrl:  		'/auth/register',
 		registerAdminUrl: 	'/auth/admin/register',
 		logoutUrl: 			'/auth/logout',
-		otpURL: 			'/auth/get/otp',
+		otpUrl: 			'/auth/get/otp',
 		authHeader:			'X-Auth-Token',
 		authToken: 			'',
 		storageType:  		'localStorage',
@@ -197,6 +197,7 @@
         responseError: function(response) {
 
           if (response.status == 401 ) {
+            shared.logout();
             window.location = config.loginPage;
           }
           return $q.reject(response);
@@ -334,8 +335,8 @@
                     return action.login(data, opts);
                 };
 
-                function register() {
-                    return acton.register();
+                function register(data, opts) {
+                    return acton.register(data, opts);
                 };
 
                 function logout() {
@@ -358,8 +359,8 @@
                     return shared.isAuthenticated();
                 };
 
-                function getOTP() {
-                    return action.getOTP();
+                function getOTP(data, opts) {
+                    return action.getOTP(data, opts);
                 }
 
 
