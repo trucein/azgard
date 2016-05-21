@@ -116,6 +116,7 @@
                 $auth.isAuthenticated = isAuthenticated;
                 $auth.getOTP          = getOTP
                 $auth.loginOTP        = loginOTP;
+                $auth.getProfile      = getProfile;
 
                 return $auth;
 
@@ -153,6 +154,22 @@
 
                 function loginOTP(data, opts) {
                     return action.loginOTP(data, opts)
+                };
+
+                function getProfile(opts) {
+                    if (shared.isAuthenticated()) {
+                        action.getProfile(opts).then(function(data){
+                            shared.profile = data.data.payload;
+                            return data;
+                        })
+                        .catch(function(){
+                            shared.profile = {}
+                        })
+                    } else {
+                        shared.profile = {}
+                        return shared.profile
+                    }
+                    
                 };
 
 

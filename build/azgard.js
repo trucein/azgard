@@ -112,7 +112,7 @@
           return $http(opts)
         };
 
-        function getProfile(data, opts) {
+        function getProfile(opts) {
           opts = opts || {};
           opts.url = opts.url ? otps.url : (config.baseUrl + config.profileUrl);
           opts.method = opts.method || 'GET';
@@ -329,6 +329,7 @@
                 $auth.isAuthenticated = isAuthenticated;
                 $auth.getOTP          = getOTP
                 $auth.loginOTP        = loginOTP;
+                $auth.getProfile      = getProfile;
 
                 return $auth;
 
@@ -368,6 +369,22 @@
                     return action.loginOTP(data, opts)
                 };
 
+                function getProfile(opts) {
+                    if (shared.isAuthenticated()) {
+                        action.getProfile(opts).then(function(data){
+                            shared.profile = data.data.payload;
+                            return data;
+                        })
+                        .catch(function(){
+                            shared.profile = {}
+                        })
+                    } else {
+                        shared.profile = {}
+                        return shared.profile
+                    }
+                    
+                };
+
 
             }
         ];
@@ -404,6 +421,7 @@
             Shared.removeToken     = removeToken;
             Shared.logout          = logout;
             Shared.isAuthenticated = isAuthenticated;
+            Shared.profile         = {};
 
             return Shared;
 

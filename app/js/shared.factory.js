@@ -25,6 +25,7 @@
             Shared.removeToken     = removeToken;
             Shared.logout          = logout;
             Shared.isAuthenticated = isAuthenticated;
+            Shared.profile         = {};
 
             return Shared;
 

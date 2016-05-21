@@ -68,7 +68,7 @@
           return $http(opts)
         };
 
-        function getProfile(data, opts) {
+        function getProfile(opts) {
           opts = opts || {};
           opts.url = opts.url ? otps.url : (config.baseUrl + config.profileUrl);
           opts.method = opts.method || 'GET';
