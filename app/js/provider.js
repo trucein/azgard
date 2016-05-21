@@ -113,7 +113,7 @@
                 $auth.getToken        = getToken;
                 $auth.removeToken     = removeToken;
                 $auth.getPayload      = getPayload;
-                $auth.isAuthenticated = isAuthetenticated;
+                $auth.isAuthenticated = isAuthenticated;
                 $auth.getOTP          = getOTP
 
                 return $auth;
