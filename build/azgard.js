@@ -365,7 +365,7 @@
                 };
 
                 function loginOTP(data, opts) {
-                    return action.getOTP(data, opts)
+                    return action.loginOTP(data, opts)
                 };
 
 
