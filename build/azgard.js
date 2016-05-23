@@ -309,6 +309,14 @@
                 set: function(value) {
                     config.authToken = value;
                 }
+            },
+            loginPage: {
+                get: function() {
+                    return config.loginPage;
+                },
+                set: function(value) {
+                    config.loginPage = value;
+                }
             }
 
         });
@@ -420,8 +428,10 @@
             Shared.removeToken     = removeToken;
             Shared.logout          = logout;
             Shared.isAuthenticated = isAuthenticated;
+            Shared.setProfile      = setProfile;
+            Shared.getProfile      = getProfile;
             Shared.profile         = {};
-
+            
             return Shared;
 
 

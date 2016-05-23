@@ -96,6 +96,14 @@
                 set: function(value) {
                     config.authToken = value;
                 }
+            },
+            loginPage: {
+                get: function() {
+                    return config.loginPage;
+                },
+                set: function(value) {
+                    config.loginPage = value;
+                }
             }
 
         });
