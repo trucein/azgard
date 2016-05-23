@@ -153,7 +153,7 @@
 		storageType:  		'localStorage',
 		tokenName: 			'token',
 		tokenPrefix: 		'azgard',
-		loginPage:  		'/login'
+		loginPage:  		'#/login'
 
 	});
 
